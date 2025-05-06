@@ -31,26 +31,27 @@ We provide example results using [MulRan dataset](https://sites.google.com/view/
 
 - As seen in the above [video](https://youtu.be/Y6DXlC34qlc?t=459), the combination of Scan Context loop detector and LIO-SAM's odometry is robust to highly dynamic and less structured environments (e.g., a wide road on a bridge with many moving objects).
 
-## How to use?
-- We provide a tutorial that runs SC-LIO-SAM on MulRan dataset, you can reproduce the above results by following these steps. 
-
-1. You can download the dataset at the [MulRan dataset website](https://sites.google.com/view/mulran-pr/home)
-2. Place the directory `SC-LIO-SAM` under user catkin work space <br>
- For example, 
-    ```
-    cd ~/catkin_ws/src
-    git clone https://github.com/gisbi-kim/SC-LIO-SAM.git
-    cd ..
-    catkin_make
-    source devel/setup.bash
-    roslaunch lio_sam run.launch # or roslaunch lio_sam run_mulran.launch
-    ```
-3. By following [this guideline](https://github.com/irapkaist/file_player_mulran), you can easily publish the MulRan dataset's LiDAR and IMU topics via ROS.
-
 
 ## Dependency
-- All dependencies are same as the original [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM#dependency)
+```sh
+sudo apt-get install -y ros-noetic-navigation
+sudo apt-get install -y ros-noetic-robot-localization
+sudo apt-get install -y ros-noetic-robot-state-publisher
+sudo apt-get install -y ros-noetic-pcl-conversions
+sudo add-apt-repository ppa:borglab/gtsam-release-4.0
+sudo apt install libgtsam-dev libgtsam-unstable-dev
+```
 
+## Run
+```
+cd ~/catkin_ws/src
+git clone https://github.com/daeunsong/SC-LIO-SAM.git
+cd ..
+catkin_make
+source devel/setup.bash
+roslaunch lio_sam run.launch 
+rosbag play {YOUR_BAG_NAME}.bag
+```
 
 ## Notes
 #### About performance
